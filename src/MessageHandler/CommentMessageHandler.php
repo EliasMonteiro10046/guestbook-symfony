@@ -39,13 +39,13 @@ class CommentMessageHandler implements MessageHandlerInterface
             return;
         }
 
-        // if (2 === $this->spamChecker->getSpamScore($comment, $message->getContext())) {
-        //     $comment->setState('spam');
-        // } else {
-        //     $comment->setState('published');
-        // }
+        /*if (2 === $this->spamChecker->getSpamScore($comment, $message->getContext())) {
+            $comment->setState('spam');
+        } else {
+            $comment->setState('published');
+        }
 
-        // $this->entityManager->flush();
+        $this->entityManager->flush();*/
 
         if ($this->workflow->can($comment, 'accept')) {
             $score = $this->spamChecker->getSpamScore($comment, $message->getContext());

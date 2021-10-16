@@ -29,7 +29,6 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * 
      * @Groups({"comment:list", "comment:item"})
      */
     private $id;
@@ -37,7 +36,6 @@ class Comment
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * 
      * @Groups({"comment:list", "comment:item"})
      */
     private $author;
@@ -45,7 +43,6 @@ class Comment
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank
-     * 
      * @Groups({"comment:list", "comment:item"})
      */
     private $text;
@@ -54,14 +51,12 @@ class Comment
      * @ORM\Column(type="text")
      * @Assert\NotBlank
      * @Assert\Email
-     * 
      * @Groups({"comment:list", "comment:item"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="datetime")
-     * 
      * @Groups({"comment:list", "comment:item"})
      */
     private $createdAt;
@@ -74,14 +69,12 @@ class Comment
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * 
      * @Groups({"comment:list", "comment:item"})
      */
     private $photoFilename;
 
     /**
      * @ORM\Column(type="string", length=20, options={"default": "submitted"})
-     * 
      * @Groups({"comment:list", "comment:item"})
      */
     private $state='submitted';

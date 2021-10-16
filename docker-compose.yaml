@@ -12,3 +12,8 @@ services:
     rabbitmq:
         image: rabbitmq:3.7-management
         ports: [5672, 15672]
+
+    blackfire:
+        image: blackfire/blackfire
+        env_file: .env.local
+        ports: [8707]

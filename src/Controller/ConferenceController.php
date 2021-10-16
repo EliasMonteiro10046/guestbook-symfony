@@ -34,27 +34,40 @@ class ConferenceController extends AbstractController
     }
 
     /**
+     * @Route("/")
+     */
+    public function indexNoLocale(): Response
+    {
+        return $this->redirectToRoute('homepage', ['_locale' => 'en']);
+    }
+
+    // @Route("/{_locale}/", name="homepage")
+    // @Route("/{_locale<en|fr>}/", name="homepage")
+    // @Route("/{_locale<%app.supported_locales%>}/", name="homepage")
+    // @Route("/{_locale<%app.supported_locales%>}/conference_header", name="conference_header")
+
+    /**
     * @Route("/", name="homepage")
     */
     public function index(ConferenceRepository $conferenceRepository): Response
     {
-        // return $this->render('conference/index.html.twig', [
-        //     'controller_name' => 'ConferenceController',
-        // ]);
-        // $greet = '';
-        // if ($nome) {
-        //     $greet = sprintf('<h1>Olá %s!</h1>', htmlspecialchars($nome));
-        // }
+        /*return $this->render('conference/index.html.twig', [
+            'controller_name' => 'ConferenceController',
+        ]);
+        $greet = '';
+        if ($nome) {
+            $greet = sprintf('<h1>Olá %s!</h1>', htmlspecialchars($nome));
+        }
 
-        // return new Response(<<<EOF
-        //     <html>
-        //         <body>
-        //             $greet
-        //             <img src="/images/under-construction.gif" />
-        //         </body>
-        //     </html>
-        //     EOF
-        // );
+        return new Response(<<<EOF
+            <html>
+                <body>
+                    $greet
+                    <img src="/images/under-construction.gif" />
+                </body>
+            </html>
+            EOF
+        );*/
 
         $response = new Response($this->twig->render('conference/index.html.twig', [
             'conferences' => $conferenceRepository->findAll(),
@@ -64,6 +77,7 @@ class ConferenceController extends AbstractController
         return $response;
     }
     
+    // @Route("/{_locale<%app.supported_locales%>}/conference/{slug}", name="conference")
     /**
      * @Route("/conference/{slug}", name="conference")
      */
@@ -94,11 +108,10 @@ class ConferenceController extends AbstractController
                 'referrer' => $request->headers->get('referer'),
                 'permalink' => $request->getUri(),
             ];
-            // if (2 === $spamChecker->getSpamScore($comment, $context)) {
-            //     throw new \RuntimeException('Blatant spam, go away!');
-            // }
-
-            #$this->entityManager->flush();
+            /*if (2 === $spamChecker->getSpamScore($comment, $context)) {
+                throw new \RuntimeException('Blatant spam, go away!');
+            }
+            $this->entityManager->flush();*/
             
             $this->bus->dispatch(new CommentMessage($comment->getId(), $context));
 

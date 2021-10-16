@@ -29,28 +29,24 @@ class Conference
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * 
      * @Groups({"conference:list", "conference:item"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
      * @Groups({"conference:list", "conference:item"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=4)
-     * 
      * @Groups({"conference:list", "conference:item"})
      */
     private $year;
 
     /**
      * @ORM\Column(type="boolean")
-     * 
      * @Groups({"conference:list", "conference:item"})
      */
     private $isInternational;
@@ -62,7 +58,6 @@ class Conference
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     *
      * @Groups({"conference:list", "conference:item"})
      */
     private $slug;
